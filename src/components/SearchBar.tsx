@@ -5,9 +5,10 @@ import { Feather } from '@expo/vector-icons';
 interface SearchBarProps {
   value?: string;
   onChange?: (value: string) => void;
+  onTermSubmit?: (value: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ value, onChange}) => {
+const SearchBar: React.FC<SearchBarProps> = ({ value, onChange, onTermSubmit}) => {
   return (
     <View style={styles.backgroundStyle}>
       <Feather name="search" style={styles.iconStyle}/>
@@ -18,6 +19,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ value, onChange}) => {
         onChangeText={onChange}
         autoCapitalize="none"
         autoCorrect={false}
+        onEndEditing={e => {
+          onTermSubmit && onTermSubmit(e.nativeEvent.text)
+        }}
       />
     </View>
   )

@@ -15,6 +15,9 @@ const SearchScreen: React.FC<SearchScreenProps> = ({ navigation }) => {
       <SearchBar
         value={term}
         onChange={setTerm}
+        onTermSubmit={value => {
+          console.log(value);
+        }}
       />
       <Text>Search Screen - {term}</Text>
     </View>

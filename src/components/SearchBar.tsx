@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, TextInput, TouchableOpacity, View, Text } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
 interface SearchBarProps {
@@ -8,21 +8,37 @@ interface SearchBarProps {
   onTermSubmit?: (value: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ value, onChange, onTermSubmit}) => {
+const SearchBar: React.FC<SearchBarProps> = ({ value, onChange, onTermSubmit }) => {
+  const [localValue, setLocalValue] = useState(value || '');
+
   return (
     <View style={styles.backgroundStyle}>
       <Feather name="search" style={styles.iconStyle}/>
       <TextInput
         placeholder="Search"
         style={styles.inputStyle}
-        value={value}
-        onChangeText={onChange}
+        value={value === undefined ? localValue : value}
+        onChangeText={term => {
+          onChange && onChange(term);
+          setLocalValue(term);
+        }}
         autoCapitalize="none"
         autoCorrect={false}
         onEndEditing={e => {
           onTermSubmit && onTermSubmit(e.nativeEvent.text)
         }}
       />
+      {localValue ? (
+        <TouchableOpacity
+          style={styles.clearStyle}
+          onPress={() => {
+            setLocalValue('');
+            onChange && onChange('');
+          }}
+        >
+          <Feather name="x-circle" size={30}/>
+        </TouchableOpacity>
+      ) : null}
     </View>
   )
 };
@@ -43,12 +59,19 @@ const styles = StyleSheet.create({
     fontSize: 18,
 
     paddingLeft: 55,
+    paddingEnd: 55,
+
     ...StyleSheet.absoluteFillObject,
   },
   iconStyle: {
     fontSize: 35,
     alignSelf: 'center',
     marginHorizontal: 15
+  },
+  clearStyle: {
+    alignSelf: 'center',
+    position: 'absolute',
+    right: 5,
   }
 });
 

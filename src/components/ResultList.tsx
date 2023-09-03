@@ -3,6 +3,8 @@ import { useNavigation } from "@react-navigation/native";
 import React from 'react';
 import { Business } from '../models/yelp.models';
 import ResultDetail from './ResultDetail';
+import { NavigationProps } from '../models/screen';
+import { SCREEN } from '../models';
 
 interface ResultListProps {
   title: string;
@@ -10,7 +12,7 @@ interface ResultListProps {
 }
 
 const ResultList: React.FC<ResultListProps> = ({ title, results }) => {
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<NavigationProps>() as NavigationProps;
 
   if (!results.length) {
     return null;
@@ -28,7 +30,7 @@ const ResultList: React.FC<ResultListProps> = ({ title, results }) => {
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('ResultsShow', { id: item.id });
+              navigation.navigate(SCREEN.ResultsShow, { id: item.id });
             }}>
             <ResultDetail result={item}/>
           </TouchableOpacity>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { NavigationScreenProp, NavigationState } from 'react-navigation';
 import { StyleSheet, Text, View } from 'react-native';
 import SearchBar from '../components/SearchBar';
@@ -15,7 +15,7 @@ const SearchScreen: React.FC<SearchScreenProps> = ({ navigation }) => {
   const [results, setResults] = useState<Business[]>([]);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const searchApi = async (term: string) => {
+  const searchApi = useCallback(async (term: string) => {
     try {
       setErrorMessage('');
       const response = await yelp.get<BusinessSearch>('/search', {
@@ -37,7 +37,11 @@ const SearchScreen: React.FC<SearchScreenProps> = ({ navigation }) => {
         console.log(e.message);
       }
     }
-  }
+  }, []);
+
+  useEffect(() => {
+    searchApi('pasta');
+  }, []);
 
   return (
     <View>

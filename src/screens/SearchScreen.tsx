@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
-import { NavigationScreenProp, NavigationState } from 'react-navigation';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, ScrollView } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import useResults from '../hooks/useResults';
 import ResultList from '../components/ResultList';
-
-interface SearchScreenProps {
-  navigation: NavigationScreenProp<NavigationState>;
-}
+import { SearchScreenProps } from '../models/screen';
 
 const SearchScreen: React.FC<SearchScreenProps> = () => {
   const [term, setTerm] = useState('');

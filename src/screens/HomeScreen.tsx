@@ -1,10 +1,6 @@
 import React from 'react';
-import { NavigationScreenProp, NavigationState } from 'react-navigation';
 import { Text, View } from 'react-native';
-
-interface HomeScreenProps {
-  navigation: NavigationScreenProp<NavigationState>;
-}
+import { HomeScreenProps } from '../models/screen';
 
 const HomeScreen: React.FC<HomeScreenProps> = () => {
   return (

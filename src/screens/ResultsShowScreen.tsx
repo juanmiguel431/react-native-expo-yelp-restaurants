@@ -1,15 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList, Image } from 'react-native';
-import { NavigationScreenProp, NavigationState } from 'react-navigation';
+import { ResultsShowScreenProps } from '../models/screen';
 import useResult from '../hooks/useResult';
 
-interface ResultsShowScreenProps {
-  navigation: NavigationScreenProp<NavigationState>;
-}
-
-const ResultsShowScreen: React.FC<ResultsShowScreenProps> = ({ navigation }) => {
-  const id = navigation.getParam('id');
-  const { isLoading, result, errorMessage } = useResult(id);
+const ResultsShowScreen: React.FC<ResultsShowScreenProps> = ({ route }) => {
+  const { isLoading, result, errorMessage } = useResult(route.params.id);
 
   return (
     <View>

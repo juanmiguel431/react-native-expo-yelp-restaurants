@@ -1,18 +1,17 @@
 import { FlatList, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { useNavigation } from "@react-navigation/native";
 import React from 'react';
 import { Business } from '../models/yelp.models';
 import ResultDetail from './ResultDetail';
-import { NavigationInjectedProps, withNavigation } from 'react-navigation';
-import { SCREEN } from '../models';
 
 interface ResultListProps {
   title: string;
   results: Business[];
 }
 
-type Props = ResultListProps & NavigationInjectedProps;
+const ResultList: React.FC<ResultListProps> = ({ title, results }) => {
+  const navigation = useNavigation<any>();
 
-const ResultList: React.FC<Props> = ({ title, results, navigation }) => {
   if (!results.length) {
     return null;
   }
@@ -29,9 +28,7 @@ const ResultList: React.FC<Props> = ({ title, results, navigation }) => {
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate(SCREEN.ResultsShow, {
-                id: item.id
-              });
+              navigation.navigate('ResultsShow', { id: item.id });
             }}>
             <ResultDetail result={item}/>
           </TouchableOpacity>
@@ -56,4 +53,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withNavigation<Props>(ResultList) as React.ComponentType<ResultListProps>;
+export default ResultList;

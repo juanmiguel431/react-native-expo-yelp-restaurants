@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import { StyleProp } from 'react-native/Libraries/StyleSheet/StyleSheet';
+import { ViewStyle } from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
 
 interface SearchBarProps {
   value?: string;
   onChange?: (value: string) => void;
   onTermSubmit?: (value: string) => void;
+  style?: StyleProp<ViewStyle>;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ value, onChange, onTermSubmit }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ value, onChange, onTermSubmit, style }) => {
   const [localValue, setLocalValue] = useState(value || '');
 
   const hasValue = value !== undefined;
   return (
-    <View style={styles.backgroundStyle}>
+    <View style={StyleSheet.flatten([styles.containerStyle, style])}>
       <Feather name="search" style={styles.iconStyle}/>
       <TextInput
         placeholder="Search"
@@ -52,18 +55,18 @@ const SearchBar: React.FC<SearchBarProps> = ({ value, onChange, onTermSubmit }) 
 };
 
 const styles = StyleSheet.create({
-  backgroundStyle: {
+  clearStyle: {
+    alignSelf: 'center',
+    position: 'absolute',
+    right: 5,
+  },
+  containerStyle: {
     backgroundColor: '#d9d4d4',
     borderRadius: 5,
     flexDirection: 'row',
     height: 50,
     marginHorizontal: 15,
     marginTop: 10
-  },
-  clearStyle: {
-    alignSelf: 'center',
-    position: 'absolute',
-    right: 5,
   },
   iconStyle: {
     alignSelf: 'center',

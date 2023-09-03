@@ -15,6 +15,7 @@ const ResultList: React.FC<ResultListProps> = ({ title, results }) => {
       {/*<Text style={styles.resultCountStyle}>Results {results.length}</Text>*/}
       <FlatList
         horizontal
+        showsHorizontalScrollIndicator={false}
         data={results}
         keyExtractor={result => result.id}
         renderItem={({ item }) => <ResultDetail result={item}/>}

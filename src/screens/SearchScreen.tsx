@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavigationScreenProp, NavigationState } from 'react-navigation';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import useResults from '../hooks/useResults';
 import ResultList from '../components/ResultList';
@@ -25,7 +25,7 @@ const SearchScreen: React.FC<SearchScreenProps> = () => {
   const superSpender = filterByPrice('$$$$');
 
   return (
-    <View>
+    <View style={styles.containerStyle}>
       <SearchBar
         value={term}
         onChange={setTerm}
@@ -33,16 +33,21 @@ const SearchScreen: React.FC<SearchScreenProps> = () => {
       />
       <Text style={styles.searchResultStyle}>We have found {results.length} Results</Text>
       {errorMessage && <Text style={styles.searchResultStyle}>{errorMessage}</Text>}
-      {noPrice.length > 1 && <ResultList title="No Price" results={noPrice}/>}
-      {costEffective.length > 1 && <ResultList title="Cost Effective" results={costEffective}/>}
-      {bitPricier.length > 1 && <ResultList title="Bit Pricier" results={bitPricier}/>}
-      {bitSpender.length > 1 && <ResultList title="Big Spender" results={bitSpender}/>}
-      {superSpender.length > 1 && <ResultList title="Super" results={superSpender}/>}
+      <ScrollView>
+        {noPrice.length > 1 && <ResultList title="No Price" results={noPrice}/>}
+        {costEffective.length > 1 && <ResultList title="Cost Effective" results={costEffective}/>}
+        {bitPricier.length > 1 && <ResultList title="Bit Pricier" results={bitPricier}/>}
+        {bitSpender.length > 1 && <ResultList title="Big Spender" results={bitSpender}/>}
+        {superSpender.length > 1 && <ResultList title="Super" results={superSpender}/>}
+      </ScrollView>
     </View>
   )
 };
 
 const styles = StyleSheet.create({
+  containerStyle: {
+    flex: 1
+  },
   searchResultStyle: {
     marginLeft: 15
   },

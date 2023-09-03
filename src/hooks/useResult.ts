@@ -12,7 +12,7 @@ export default function useResult(id: string) {
     try {
       setErrorMessage('');
       setIsLoading(true);
-      await new Promise(r => setTimeout(r, 3000));
+      // await new Promise(r => setTimeout(r, 3000));
       const response = await yelp.get<Business>(`/${id}`);
       setResult(response.data);
 

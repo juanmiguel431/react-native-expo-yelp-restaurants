@@ -13,7 +13,7 @@ interface ResultListProps {
 type Props = ResultListProps & NavigationInjectedProps;
 
 const ResultList: React.FC<Props> = ({ title, results, navigation }) => {
-  if (results.length === 0) {
+  if (!results.length) {
     return null;
   }
 

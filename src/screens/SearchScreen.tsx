@@ -31,7 +31,9 @@ const SearchScreen: React.FC<SearchScreenProps> = () => {
         onChange={setTerm}
         onTermSubmit={searchApi}
       />
-      <Text style={styles.searchResultStyle}>We have found {results.length} Results</Text>
+      <Text style={styles.searchResultStyle}>
+        {errorMessage || `We have found ${results.length} Results`}
+      </Text>
       {errorMessage && <Text style={styles.searchResultStyle}>{errorMessage}</Text>}
       <ScrollView>
         {noPrice.length > 1 && <ResultList title="No Price" results={noPrice}/>}
@@ -46,6 +48,7 @@ const SearchScreen: React.FC<SearchScreenProps> = () => {
 
 const styles = StyleSheet.create({
   searchResultStyle: {
+    marginBottom: 20,
     marginLeft: 15
   },
 });

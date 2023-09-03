@@ -41,7 +41,7 @@ const SearchScreen: React.FC<SearchScreenProps> = ({ navigation }) => {
 
   useEffect(() => {
     searchApi('pasta');
-  }, []);
+  }, [searchApi]);
 
   return (
     <View>

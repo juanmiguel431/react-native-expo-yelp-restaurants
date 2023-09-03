@@ -8,7 +8,7 @@ interface SearchScreenProps {
 }
 
 const SearchScreen: React.FC<SearchScreenProps> = ({ navigation }) => {
-  const [term, setTerm] = useState('JMPC');
+  const [term, setTerm] = useState('');
 
   return (
     <View>

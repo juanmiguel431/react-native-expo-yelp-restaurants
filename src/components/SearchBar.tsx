@@ -11,16 +11,17 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({ value, onChange, onTermSubmit }) => {
   const [localValue, setLocalValue] = useState(value || '');
 
+  const hasValue = value !== undefined;
   return (
     <View style={styles.backgroundStyle}>
       <Feather name="search" style={styles.iconStyle}/>
       <TextInput
         placeholder="Search"
         style={styles.inputStyle}
-        value={value === undefined ? localValue : value}
+        value={hasValue ? value : localValue}
         onChangeText={term => {
-          onChange && onChange(term);
           setLocalValue(term);
+          onChange && onChange(term);
         }}
         autoCapitalize="none"
         autoCorrect={false}
@@ -32,8 +33,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ value, onChange, onTermSubmit }) 
         <TouchableOpacity
           style={styles.clearStyle}
           onPress={() => {
-            setLocalValue('');
-            onChange && onChange('');
+            if (hasValue) {
+              if (onChange) {
+                setLocalValue('');
+                onChange('');
+              }
+            } else {
+              setLocalValue('');
+              onChange && onChange('');
+            }
           }}
         >
           <Feather name="x-circle" size={30}/>

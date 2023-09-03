@@ -25,7 +25,9 @@ const ResultList: React.FC<Props> = ({ title, results, navigation }) => {
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate(SCREEN.ResultsShow);
+              navigation.navigate(SCREEN.ResultsShow, {
+                id: item.id
+              });
             }}>
             <ResultDetail result={item}/>
           </TouchableOpacity>

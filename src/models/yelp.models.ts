@@ -19,6 +19,44 @@ export type Business = {
   location: BusinessLocation;
   phone: string;
   display_phone: string;
+  distance: string;
+  hours: BusinessHours[];
+  is_claimed: boolean;
+  date_opened?: string;
+  date_closed?: string;
+  photos: string[];
+  special_hours: BusinessSpecialHours;
+  messaging: BusinessMessaging;
+}
+
+type BusinessMessaging = {
+  url: string;
+  use_case_text: string;
+  response_rate?: string;
+  response_time?: number;
+  is_enabled?: boolean;
+}
+
+type BusinessSpecialHours = {
+  date: string;
+  start?: string;
+  end?: string;
+  is_overnight?: boolean;
+  is_closed?: boolean;
+
+}
+
+type BusinessHours = {
+  hour_type: string;
+  open: BusinessHoursOpen[];
+  is_open_now: boolean;
+}
+
+type BusinessHoursOpen = {
+  day: number;
+  start: string;
+  end: string;
+  is_overnight: boolean;
 }
 
 type BusinessCategory = {

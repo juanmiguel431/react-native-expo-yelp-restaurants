@@ -53,34 +53,32 @@ const SearchBar: React.FC<SearchBarProps> = ({ value, onChange, onTermSubmit }) 
 
 const styles = StyleSheet.create({
   backgroundStyle: {
-    marginTop: 10,
     backgroundColor: '#d9d4d4',
-    height: 50,
     borderRadius: 5,
+    flexDirection: 'row',
+    height: 50,
     marginHorizontal: 15,
-    flexDirection: 'row'
+    marginTop: 10
+  },
+  clearStyle: {
+    alignSelf: 'center',
+    position: 'absolute',
+    right: 5,
+  },
+  iconStyle: {
+    alignSelf: 'center',
+    fontSize: 35,
+    marginHorizontal: 15
   },
   inputStyle: {
     // borderColor: 'black',
     // borderWidth: 1,
     // flex: 1,
     fontSize: 18,
-
-    paddingLeft: 55,
     paddingEnd: 55,
-
+    paddingLeft: 55,
     ...StyleSheet.absoluteFillObject,
   },
-  iconStyle: {
-    fontSize: 35,
-    alignSelf: 'center',
-    marginHorizontal: 15
-  },
-  clearStyle: {
-    alignSelf: 'center',
-    position: 'absolute',
-    right: 5,
-  }
 });
 
 export default SearchBar;

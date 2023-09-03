@@ -1,14 +1,18 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { Business } from '../models/yelp.models';
 import ResultDetail from './ResultDetail';
+import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { SCREEN } from '../models';
 
-type ResultListProps = {
+interface ResultListProps {
   title: string;
   results: Business[];
-};
+}
 
-const ResultList: React.FC<ResultListProps> = ({ title, results }) => {
+type Props = ResultListProps & NavigationInjectedProps;
+
+const ResultList: React.FC<Props> = ({ title, results, navigation }) => {
   return (
     <View style={styles.containerStyle}>
       <Text style={styles.titleStyle}>{title}</Text>
@@ -18,7 +22,14 @@ const ResultList: React.FC<ResultListProps> = ({ title, results }) => {
         showsHorizontalScrollIndicator={false}
         data={results}
         keyExtractor={result => result.id}
-        renderItem={({ item }) => <ResultDetail result={item}/>}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate(SCREEN.ResultsShow);
+            }}>
+            <ResultDetail result={item}/>
+          </TouchableOpacity>
+        )}
       />
     </View>
   );
@@ -39,4 +50,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ResultList;
+export default withNavigation<Props>(ResultList) as React.ComponentType<ResultListProps>;

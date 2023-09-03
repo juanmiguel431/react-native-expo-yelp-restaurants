@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import yelp from '../api/yelp';
 import { AxiosError } from 'axios';
+import { Business, BusinessSearch } from '../models/yelp';
 
 interface SearchScreenProps {
   navigation: NavigationScreenProp<NavigationState>;
@@ -11,12 +12,11 @@ interface SearchScreenProps {
 
 const SearchScreen: React.FC<SearchScreenProps> = ({ navigation }) => {
   const [term, setTerm] = useState('');
-
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<Business[]>([]);
 
   const searchApi = async (term: string) => {
     try {
-      const response = await yelp.get('/search', {
+      const response = await yelp.get<BusinessSearch>('/search', {
         params: {
           term: term,
           sort_by: 'best_match',

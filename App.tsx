@@ -10,7 +10,8 @@ const navigator = createStackNavigator({
 }, {
   initialRouteName: SCREEN.Search,
   defaultNavigationOptions: {
-    title: 'Business Search'
+    title: 'Business Search',
+    // cardStyle: { backgroundColor: "#FFFFFF" },
   }
 });
 

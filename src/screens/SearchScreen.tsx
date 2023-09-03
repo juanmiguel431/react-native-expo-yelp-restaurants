@@ -25,7 +25,7 @@ const SearchScreen: React.FC<SearchScreenProps> = () => {
   const superSpender = filterByPrice('$$$$');
 
   return (
-    <View style={styles.containerStyle}>
+    <>
       <SearchBar
         value={term}
         onChange={setTerm}
@@ -40,14 +40,11 @@ const SearchScreen: React.FC<SearchScreenProps> = () => {
         {bitSpender.length > 1 && <ResultList title="Big Spender" results={bitSpender}/>}
         {superSpender.length > 1 && <ResultList title="Super" results={superSpender}/>}
       </ScrollView>
-    </View>
+    </>
   )
 };
 
 const styles = StyleSheet.create({
-  containerStyle: {
-    flex: 1
-  },
   searchResultStyle: {
     marginLeft: 15
   },

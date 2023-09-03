@@ -14,6 +14,16 @@ const SearchScreen: React.FC<SearchScreenProps> = () => {
 
   const [searchApi, results, errorMessage] = useResults();
 
+  const filterByPrice = (price: string) => {
+    return results.filter(p => p.price === price);
+  }
+
+  const noPrice = results.filter(p => !p.price);
+  const costEffective = filterByPrice('$');
+  const bitPricier = filterByPrice('$$');
+  const bitSpender = filterByPrice('$$$');
+  const superSpender = filterByPrice('$$$$');
+
   return (
     <View>
       <SearchBar
@@ -23,14 +33,11 @@ const SearchScreen: React.FC<SearchScreenProps> = () => {
       />
       <Text style={styles.searchResultStyle}>We have found {results.length} Results</Text>
       {errorMessage && <Text style={styles.searchResultStyle}>{errorMessage}</Text>}
-      <ResultList
-        title="No Price"
-        results={results.filter(p => p.price === undefined || p.price === null || p.price === '')}
-      />
-      <ResultList title="Cost Effective" results={results.filter(p => p.price === '$')}/>
-      <ResultList title="Bit Pricier" results={results.filter(p => p.price === '$$')}/>
-      <ResultList title="Big Spender" results={results.filter(p => p.price === '$$$')}/>
-      <ResultList title="Super" results={results.filter(p => p.price === '$$$$')}/>
+      {noPrice.length > 1 && <ResultList title="No Price" results={noPrice}/>}
+      {costEffective.length > 1 && <ResultList title="Cost Effective" results={costEffective}/>}
+      {bitPricier.length > 1 && <ResultList title="Bit Pricier" results={bitPricier}/>}
+      {bitSpender.length > 1 && <ResultList title="Big Spender" results={bitSpender}/>}
+      {superSpender.length > 1 && <ResultList title="Super" results={superSpender}/>}
     </View>
   )
 };

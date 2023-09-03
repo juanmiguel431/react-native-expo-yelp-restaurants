@@ -26,8 +26,11 @@ const styles = StyleSheet.create({
   inputStyle: {
     // borderColor: 'black',
     // borderWidth: 1,
-    flex: 1,
-    fontSize: 18
+    // flex: 1,
+    fontSize: 18,
+
+    paddingLeft: 55,
+    ...StyleSheet.absoluteFillObject,
   },
   iconStyle: {
     fontSize: 35,

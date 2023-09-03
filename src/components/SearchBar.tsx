@@ -3,13 +3,22 @@ import { StyleSheet, TextInput, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
 interface SearchBarProps {
+  value?: string;
+  onChange?: (value: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = () => {
+const SearchBar: React.FC<SearchBarProps> = ({ value, onChange}) => {
   return (
     <View style={styles.backgroundStyle}>
       <Feather name="search" style={styles.iconStyle}/>
-      <TextInput placeholder="Search" style={styles.inputStyle} />
+      <TextInput
+        placeholder="Search"
+        style={styles.inputStyle}
+        value={value}
+        onChangeText={onChange}
+        autoCapitalize="none"
+        autoCorrect={false}
+      />
     </View>
   )
 };

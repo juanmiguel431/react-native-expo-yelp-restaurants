@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavigationScreenProp, NavigationState } from 'react-navigation';
 import { StyleSheet, Text, View } from 'react-native';
 import SearchBar from '../components/SearchBar';
@@ -8,10 +8,15 @@ interface SearchScreenProps {
 }
 
 const SearchScreen: React.FC<SearchScreenProps> = ({ navigation }) => {
+  const [term, setTerm] = useState('JMPC');
+
   return (
     <View>
-      <SearchBar />
-      <Text>Search Screen</Text>
+      <SearchBar
+        value={term}
+        onChange={setTerm}
+      />
+      <Text>Search Screen - {term}</Text>
     </View>
   )
 };

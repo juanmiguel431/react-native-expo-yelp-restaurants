@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import yelp from '../api/yelp';
 import { AxiosError } from 'axios';
-import { Business, BusinessSearch } from '../models/yelp';
+import { Business, BusinessSearch } from '../models/yelp.models';
 
 interface SearchScreenProps {
   navigation: NavigationScreenProp<NavigationState>;

@@ -13,9 +13,11 @@ interface SearchScreenProps {
 const SearchScreen: React.FC<SearchScreenProps> = ({ navigation }) => {
   const [term, setTerm] = useState('');
   const [results, setResults] = useState<Business[]>([]);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const searchApi = async (term: string) => {
     try {
+      setErrorMessage('');
       const response = await yelp.get<BusinessSearch>('/search', {
         params: {
           term: term,
@@ -26,8 +28,9 @@ const SearchScreen: React.FC<SearchScreenProps> = ({ navigation }) => {
       });
 
       setResults(response.data.businesses);
-      console.log('JMPC', response.data);
+
     } catch (e) {
+      setErrorMessage('Something went wrong.');
       if (e instanceof AxiosError) {
         console.log(e.response);
       } else if (e instanceof Error) {
@@ -44,6 +47,7 @@ const SearchScreen: React.FC<SearchScreenProps> = ({ navigation }) => {
         onTermSubmit={searchApi}
       />
       <Text>We have found {results.length}</Text>
+      {errorMessage && <Text>{errorMessage}</Text>}
     </View>
   )
 };

@@ -36,11 +36,11 @@ const SearchScreen: React.FC<SearchScreenProps> = () => {
       </Text>
       {errorMessage && <Text style={styles.searchResultStyle}>{errorMessage}</Text>}
       <ScrollView>
-        {noPrice.length > 1 && <ResultList title="No Price" results={noPrice}/>}
-        {costEffective.length > 1 && <ResultList title="Cost Effective" results={costEffective}/>}
-        {bitPricier.length > 1 && <ResultList title="Bit Pricier" results={bitPricier}/>}
-        {bitSpender.length > 1 && <ResultList title="Big Spender" results={bitSpender}/>}
-        {superSpender.length > 1 && <ResultList title="Super" results={superSpender}/>}
+        <ResultList title="No Price" results={noPrice}/>
+        <ResultList title="Cost Effective" results={costEffective}/>
+        <ResultList title="Bit Pricier" results={bitPricier}/>
+        <ResultList title="Big Spender" results={bitSpender}/>
+        <ResultList title="Super" results={superSpender}/>
       </ScrollView>
     </>
   )

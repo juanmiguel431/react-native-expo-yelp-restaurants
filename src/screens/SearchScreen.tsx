@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { NavigationScreenProp, NavigationState } from 'react-navigation';
 import { StyleSheet, Text, View } from 'react-native';
 import SearchBar from '../components/SearchBar';
+import yelp from '../api/yelp';
+import { AxiosError } from 'axios';
 
 interface SearchScreenProps {
   navigation: NavigationScreenProp<NavigationState>;
@@ -10,16 +12,38 @@ interface SearchScreenProps {
 const SearchScreen: React.FC<SearchScreenProps> = ({ navigation }) => {
   const [term, setTerm] = useState('');
 
+  const [results, setResults] = useState([]);
+
+  const searchApi = async (term: string) => {
+    try {
+      const response = await yelp.get('/search', {
+        params: {
+          term: term,
+          sort_by: 'best_match',
+          limit: 50,
+          location: 'New York City'
+        }
+      });
+
+      setResults(response.data.businesses);
+      console.log('JMPC', response.data);
+    } catch (e) {
+      if (e instanceof AxiosError) {
+        console.log(e.response);
+      } else if (e instanceof Error) {
+        console.log(e.message);
+      }
+    }
+  }
+
   return (
     <View>
       <SearchBar
         value={term}
         onChange={setTerm}
-        onTermSubmit={value => {
-          console.log(value);
-        }}
+        onTermSubmit={searchApi}
       />
-      <Text>Search Screen - {term}</Text>
+      <Text>We have found {results.length}</Text>
     </View>
   )
 };

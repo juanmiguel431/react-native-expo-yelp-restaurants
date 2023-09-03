@@ -10,7 +10,7 @@ interface SearchScreenProps {
   navigation: NavigationScreenProp<NavigationState>;
 }
 
-const SearchScreen: React.FC<SearchScreenProps> = ({ navigation }) => {
+const SearchScreen: React.FC<SearchScreenProps> = () => {
   const [term, setTerm] = useState('');
   const [results, setResults] = useState<Business[]>([]);
   const [errorMessage, setErrorMessage] = useState('');

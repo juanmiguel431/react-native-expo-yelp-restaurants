@@ -6,7 +6,7 @@ interface HomeScreenProps {
   navigation: NavigationScreenProp<NavigationState>;
 }
 
-const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
+const HomeScreen: React.FC<HomeScreenProps> = () => {
   return (
     <View>
       <Text>Hello there!</Text>

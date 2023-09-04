@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
 import React from 'react';
 import { Business } from '../models/yelp.models';
+import ShimmerImage from './ui/ShimmerImage';
 
 type ResultDetailProps = {
   result: Business;
@@ -9,7 +10,7 @@ type ResultDetailProps = {
 const ResultDetail: React.FC<ResultDetailProps> = ({ result }) => {
   return (
     <View style={styles.containerStyle}>
-      <Image source={{ uri: result.image_url }} style={styles.imageStyle}/>
+      <ShimmerImage uri={result.image_url} style={styles.imageStyle}/>
       <Text style={styles.titleStyle}>{result.name}</Text>
       <Text>{result.rating} Stars, {result.review_count} Reviews</Text>
     </View>

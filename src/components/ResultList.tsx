@@ -1,6 +1,6 @@
+import React from 'react';
 import { FlatList, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
-import React from 'react';
 import { Business } from '../models/yelp.models';
 import ResultDetail from './ResultDetail';
 import { NavigationProps } from '../models/screen';

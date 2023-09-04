@@ -42,6 +42,7 @@ const ShimmerImage: React.FC<ShimmerImageProps> = ({ uri, style }) => {
       <ShimmerPlaceHolder
         ref={imageRef}
         visible={showChildComp}
+        style={style}
       >
         <Image
           source={{ uri: uri }}

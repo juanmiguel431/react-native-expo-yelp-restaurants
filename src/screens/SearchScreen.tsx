@@ -30,7 +30,6 @@ const SearchScreen: React.FC<SearchScreenProps> = () => {
       <Text style={styles.searchResultStyle}>
         {errorMessage || `We have found ${results.length} Results`}
       </Text>
-      {errorMessage && <Text style={styles.searchResultStyle}>{errorMessage}</Text>}
       <ScrollView>
         <ResultList title="No Price" results={noPrice}/>
         <ResultList title="Cost Effective" results={costEffective}/>

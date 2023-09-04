@@ -16,7 +16,7 @@ const ResultsShowScreen: React.FC<ResultsShowScreenProps> = ({ route }) => {
           <Text>{result.name}</Text>
           <FlatList
             data={result.photos}
-            keyExtractor={item => item}
+            keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => (
               <ShimmerImage uri={item} style={styles.imageStyle}/>
             )}

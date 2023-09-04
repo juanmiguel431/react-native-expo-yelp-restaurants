@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { ResultsShowScreenProps } from '../models/screen';
 import useResult from '../hooks/useResult';
-import ShimmerImage from '../components/ui/ShimmerImage';
+import ImageLoader from '../components/ui/ImageLoader';
 
 const ResultsShowScreen: React.FC<ResultsShowScreenProps> = ({ route }) => {
   const { isLoading, result, errorMessage } = useResult(route.params.id);
@@ -18,7 +18,7 @@ const ResultsShowScreen: React.FC<ResultsShowScreenProps> = ({ route }) => {
             data={result.photos}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => (
-              <ShimmerImage uri={item} style={styles.imageStyle}/>
+              <ImageLoader uri={item} style={styles.imageStyle}/>
             )}
           />
         </>

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { Business } from '../models/yelp.models';
 import ShimmerImage from './ui/ShimmerImage';

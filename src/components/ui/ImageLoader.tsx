@@ -3,7 +3,7 @@ import { Image, StyleSheet, View } from 'react-native';
 import { StyleProp } from 'react-native/Libraries/StyleSheet/StyleSheet';
 import { ImageStyle } from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import ContentLoader, { Rect, List } from 'react-content-loader/native'
+import ContentLoader, { Rect, Circle, List, Facebook } from 'react-content-loader/native'
 
 type ShimmerImageProps = {
   uri: string;
@@ -27,12 +27,17 @@ const ImageLoader: React.FC<ShimmerImageProps> = ({ uri, style }) => {
 
   return (
     <>
-      {isLoading && <ContentLoader style={style}/>}
+      {isLoading &&
+        <ContentLoader style={style} speed={0.5} backgroundColor="#f3f3f3" foregroundColor="#ecebeb">
+          {/*<Circle cx="75" cy="75" r="75"/>*/}
+          <Rect x="10" y="10" rx="10" ry="10" width="150" height="150" />
+        </ContentLoader>
+      }
       <Image
         source={{ uri: uri }}
         style={isLoading ? { width: 1, height: 1 } : style}
         onLoad={async () => {
-          // await new Promise(r => setTimeout(r, 3000));
+          await new Promise(r => setTimeout(r, 3000));
           setIsLoading(false);
         }}
       />

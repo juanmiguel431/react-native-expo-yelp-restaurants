@@ -18,7 +18,7 @@ const ResultsShowScreen: React.FC<ResultsShowScreenProps> = ({ route }) => {
             data={result.photos}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => (
-              <ImageLoader uri={item} style={styles.imageStyle}/>
+              <ImageLoader uri={item} height={200} width={200}/>
             )}
           />
         </>
@@ -27,11 +27,6 @@ const ResultsShowScreen: React.FC<ResultsShowScreenProps> = ({ route }) => {
   )
 };
 
-const styles = StyleSheet.create({
-  imageStyle: {
-    height: 200,
-    width: 200
-  }
-});
+const styles = StyleSheet.create({});
 
 export default ResultsShowScreen;
